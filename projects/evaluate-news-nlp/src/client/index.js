@@ -7,3 +7,8 @@ alert("I EXIST")
 console.log("CHANGE!!");
 
 alert ("hello")
+
+export {
+    checkForName,
+    handleSubmit
+   }
