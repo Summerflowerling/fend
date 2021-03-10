@@ -4,6 +4,7 @@ const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 const dotenv = require('dotenv');
 dotenv.config();
+const fetch = require('node-fetch')
 const myApiKey = process.env.API_KEY;
 
 const app = express()
@@ -42,21 +43,16 @@ app.get('/test', function (req, res) {
 //post method route
 
 
-app.post('/addData', function(req, res){
+/*app.post('/addData', function(req, res){
     let data = req.body.sentence
     projectData = {data};
     res.send(projectData)
-})
+})*/
 
-//Try later
-/*app.post('/addData', async function(req, res) {
-    console.log(req.body)
-    const result = await fetch(`https://api.meaningcloud.com/sentiment-2.1?key=myApiKey&lang=auto&of=json&url=${req.body.sentence}`);
-    try {
-        const response = await result.json();
-        res.send(response)
-    } catch (error) {
-        console.log("error", error);
-    }})
-    */
+
+app.post('/addData', async function(req, res) {
+    API_URL = `https://api.meaningcloud.com/sentiment-2.1?key=${myApiKey}&lang=auto&of=json&url=${req.body.sentence}`;
+    const result = await fetch(API_URL);    
+})
+    
     
